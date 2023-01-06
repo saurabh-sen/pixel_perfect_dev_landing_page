@@ -1,93 +1,78 @@
-import { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { vercel } from '../public/index'
 
-const Navbar = () => {
+// import { vercel } from '../public/index'
+import style from '../styles/Navbar.module.css'
 
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
+function NavBar() {
   const [navbar, setNavbar] = useState(false);
-
   return (
-    <nav className="bg-white shadow">
-      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
-        
-        <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link href='/'>
-              {/* PIXEL PERFECT */}
-              <Image src={vercel} alt='vercel' width={100} height={100} />
-            </Link>
-            <div className="md:hidden">
-              <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
-                onClick={() => setNavbar(prev => !prev)}
-              >
-                {navbar ? (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-black transition-all duration-1000"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 text-black transition-all duration-1000"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
+    <div>
+      <nav className={style.header}>
 
-        <div>
-          <div
-            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? "block" : "hidden"
-              }`}
-          >
-            <ul className=" flex flex-col items-center justify-center space-y-8 md:flex-row md:space-x-6 md:space-y-0">
-              <input type="search" name="search" id="search" placeholder='Search here...' className='outline p-4 rounded' />
-            </ul>
-
-            <div className=" flex flex-col justify-center items-center mt-3 space-y-2 md:hidden">
-              <Link
-                href="/"
-                className="inline-block w-[9em] px-4 py-2 text-center text-white bg-[#C54680] rounded-md shadow hover:bg-[#e33684]"
-              >
-                cart (items-0)
+        <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+          <div>
+            <div className="flex items-center justify-between py-3 md:py-5 md:block">
+              {/* LOGO */}
+              <Link href="/">
+                <h2 className="text-2xl text-black font-bold ">LOGO</h2>
               </Link>
+              {/* HAMBURGER BUTTON FOR MOBILE */}
+              <div className="md:hidden">
+                <button
+                  className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                  onClick={() => setNavbar(!navbar)}
+                >
+                  {navbar ? (
+                    <Image className='invert' src="/close.svg" width={30} height={30} alt="logo" />
+                  ) : (
+                    <Image
+                      src="/hamburger-menu.svg"
+                      width={30}
+                      height={30}
+                      alt="logo"
+                      className="focus:border-none active:border-none"
+                    />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
-        </div> 
-
-        <div className="hidden space-x-2 md:inline-block">
-          <Link
-            href="/"
-            className={`px-4 py-2 text-white bg-blue-500 rounded-md shadow hover:bg-[#e33684]`}
-          >
-            cart (items-0)
-          </Link>
+          <div>
+            <div
+              className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${navbar ? 'p-12 md:p-0 block' : 'hidden'
+                }`}
+            >
+              <ul className="h-screen md:h-auto items-center justify-center md:flex ">
+                <li className="pb-6 text-xl text-white py-2 md:px-6 text-center border-b-2 md:border-b-0    border-purple-900   md:hover:bg-transparent">
+                  <Link className={style.an} href="#about" onClick={() => setNavbar(!navbar)}>
+                    About
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0    border-purple-900   md:hover:bg-transparent">
+                  <Link className={style.an} href="#blog" onClick={() => setNavbar(!navbar)}>
+                    Blogs
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0    border-purple-900   md:hover:bg-transparent">
+                  <Link className={style.an} href="#contact" onClick={() => setNavbar(!navbar)}>
+                    Contact
+                  </Link>
+                </li>
+                <li className="pb-6 text-xl text-white py-2 px-6 text-center  border-b-2 md:border-b-0   border-purple-900   md:hover:bg-transparent">
+                  <Link className={style.an} href="#projects" onClick={() => setNavbar(!navbar)}>
+                    Projects
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-
-      </div>
-    </nav>
-  )
+      </nav>
+    </div>
+  );
 }
 
-export default Navbar
+export default NavBar;

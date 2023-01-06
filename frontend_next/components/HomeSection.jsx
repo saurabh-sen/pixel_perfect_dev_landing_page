@@ -1,8 +1,24 @@
-import React from 'react'
+import styles from '../styles/HomeSection.module.css'
+
+// import '../public/static/query'
+
+
+
 
 const HomeSection = () => {
   return (
-    <div>HomeSection hello</div>
+
+    <div className={styles.diagonalbox}>
+      <div class={styles.content}> ... </div>
+    </div>
+
+
+
+
+
+
+
+
   )
 }
 
